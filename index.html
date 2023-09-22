@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>NGL Spam Generator</title>
+	<style>
+		body {
+			display: table-column;
+			font-family: Arial, sans-serif;
+			background-color: #f2f2f2;
+			margin: 0;
+			padding: 0;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			height: 100vh;
+		}
+
+		.container {
+			background-color: #fff;
+			padding: 20px;
+			border-radius: 5px;
+			box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.5);
+		}
+
+		.input-group {
+			margin-bottom: 10px;
+		}
+
+		label {
+			display: block;
+			margin-bottom: 5px;
+		}
+
+		input[type="text"] {
+			width: 100%;
+			padding: 10px;
+			border: 1px solid #ccc;
+			border-radius: 3px;
+		}
+
+		button {
+			background-color: #007bff;
+			color: #fff;
+			border: none;
+			padding: 10px 20px;
+			border-radius: 3px;
+			cursor: pointer;
+		}
+
+		button:hover {
+			background-color: #0056b3;
+		}
+	</style>
+</head>
+
+<body>
+	<div class="container">
+		<h1>NGL Spam Generator</h1>
+		<div class="input-group">
+			<label for="username">Username:</label>
+			<input type="text" id="username" placeholder="Enter username">
+		</div>
+		<div class="input-group">
+			<label for="message">Message:</label>
+			<input type="text" id="message" placeholder="Enter message">
+		</div>
+		<div class="input-group">
+			<label for="total">Number of Messages:</label>
+			<input type="number" id="total" placeholder="Enter number of messages">
+		</div>
+		<button id="generateButton">Generate Spam</button>
+		<div id="result"></div>
+		<footer style="text-align: center; margin-top: 20px;">
+			CODED BY ADONIS
+	</div>
+
+	<script>
+		const generateButton = document.getElementById('generateButton');
+		const resultDiv = document.getElementById('result');
+
+		generateButton.addEventListener('click', () => {
+			const username = document.getElementById('username').value;
+			const message = document.getElementById('message').value;
+			const total = document.getElementById('total').value;
+
+			fetch(`https://api.heckerman06.repl.co/api/other/nglspam?username=${username}&message=${message}&total=${total}&apikey=danielxd`)
+				.then(response => response.json())
+				.then(data => {
+					resultDiv.innerHTML = `<p>Generated Spam:</p><pre>${data.result}</pre>`;
+				})
+				.catch(error => {
+					resultDiv.innerHTML = `<p>Error: ${error.message}</p>`;
+				});
+		});
+	</script>
+
+	</footer>
+</body>
+
+</html>
